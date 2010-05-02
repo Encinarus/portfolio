@@ -1,0 +1,19 @@
+
+ul {
+  margin-left: 0px;
+}
+
+li.project-link {
+  display: inline; 
+  list-style-type: none;
+}
+
+li.project-link a {
+  background-color: #FFFFFF;
+  padding: 10px;
+  margin: 0px;
+}
+
+li.project-link a:hover { 
+  background-color: #F0F0F0;
+}
