@@ -41,24 +41,29 @@ class PortfolioHandler(webapp.RequestHandler):
     return uri.replace('/portfolio', '')
 
   def getDemoContent(self, demoName):
-    if demoName == '/':
-      return "Hello World"
+    if demoName == '/' or not len(demoName):
+      return (None, "Hello World")
     elif demoName == '/dial':
-      return  loadTemplate('templates/dial_creator.html')
+      return ("Dial Creator", loadTemplate('templates/dial_creator.html'))
     elif demoName == '/life':
-      return loadTemplate('templates/conways_life.html')
+      conway = loadTemplate('templates/conways_life.html', {
+        'conway_js': 'hello',
+      })
+      return ("Conway's Game of Life", conway)
     else:
-      return "Whoops, demo %s not found!" % (demoName)
+      return (None, "Whoops, demo %s not found!" % (demoName))
 
   def get(self):
+    (name, content) = self.getDemoContent(self.getPageName())
     commonArgs = {
-      'project_name': 'Dial Creator',
+      'project_name': name,
       'page_title': 'Demos @ Light Pegasus',
+      'analytics': loadTemplate('templates/analytics.html'),
     }
     site_header = loadTemplate(
         'templates/site_header.html', 
         searchList = commonArgs)
-    content = self.getDemoContent(self.getPageName())
+
     template_values = mergeParams(commonArgs, { 
       'site_header': site_header,
       'css_includes': loadTemplate('templates/css_includes.html'),
@@ -71,10 +76,17 @@ class PortfolioHandler(webapp.RequestHandler):
     self.response.out.write(tmpl)
 
 
+class NotFoundHandler(webapp.RequestHandler):
+  def get(self):
+    self.response.set_status(404)
+    self.response.out.write("<html><body>Sorry, couldn't find what you were looking for</body></html>")
+
+
 def main():
-  application = webapp.WSGIApplication([('/portfolio/.*', PortfolioHandler),
-                                        ('/', MainHandler)],
-                                         debug=True)
+  application = webapp.WSGIApplication([('/portfolio.*', PortfolioHandler),
+                                        ('/', MainHandler),
+                                        ('.*', NotFoundHandler)],
+                                       debug=True)
   util.run_wsgi_app(application)
 
 

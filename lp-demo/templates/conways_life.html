@@ -25,13 +25,15 @@
 
 <div class="span-16 colborder prepend-1">
   <div id="demo">
-    This is dummy text, should be visible
+    <script type="text/javascript" src="/js/conway.js"></script>
+    <canvas id="conway" width="300" height="300" style="border: 1px solid black; margin: 0 auto; width: 300;" onload="init()"></canvas>
   </div>
   <div id="code" class="hidden">
-    <pre class="brush: java">
-      public static void main(String[] args) {
-        System.out.println("Hello World");
-      }
+    <h3>Code</h3>
+    <p>This is the code I wrote to simulate conway's game of life.
+    </p>
+    <pre class="brush: javascript">
+$conway_js
     </pre>
   </div>
 </div>

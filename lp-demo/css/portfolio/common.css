@@ -1,0 +1,11 @@
+.hidden {
+  display: none;
+}
+
+ul.project-nav {
+  list-style-type: none;
+}
+
+ul.project-nav li {
+  margin-bottom: 10px;
+}

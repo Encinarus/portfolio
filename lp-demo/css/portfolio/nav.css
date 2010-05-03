@@ -12,8 +12,10 @@ li.project-link a {
   background-color: #FFFFFF;
   padding: 10px;
   margin: 0px;
+  text-decoration: none;
 }
 
 li.project-link a:hover { 
   background-color: #F0F0F0;
+  text-decoration: underline;
 }
