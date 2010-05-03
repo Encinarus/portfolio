@@ -1,40 +1,18 @@
-<script type="text/javascript" src="/js/highlighter/shCore.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushBash.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushCpp.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushCSharp.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushCss.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushDelphi.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushDiff.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushGroovy.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushJava.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushJScript.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushPhp.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushPlain.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushPython.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushRuby.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushScala.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushSql.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushVb.js"></script> 
-<script type="text/javascript" src="/js/highlighter/shBrushXml.js"></script> 
-<link type="text/css" rel="stylesheet" href="/css/highlighter/shCore.css"/> 
-<link type="text/css" rel="stylesheet" href="/css/highlighter/shThemeDefault.css"/> 
-<script type="text/javascript"> 
-	SyntaxHighlighter.config.clipboardSwf = '/js/highlighter/clipboard.swf';
-	SyntaxHighlighter.all();
-</script> 
-
+<script type="text/javascript" src="/js/conway.js"></script>
+<script type="text/javascript">
+  \$("\#conway").ready(function() {
+    CONWAY.init();
+  });
+</script>
 <div class="span-16 colborder prepend-1">
   <div id="demo">
-    <script type="text/javascript" src="/js/conway.js"></script>
-    <canvas id="conway" width="300" height="300" style="border: 1px solid black; margin: 0 auto; width: 300;" onload="init()"></canvas>
+    <h3>Demo</h3>
+    <canvas id="conway" width="500" height="500" 
+            style="border: 1px solid black;"></canvas>
   </div>
   <div id="code" class="hidden">
     <h3>Code</h3>
-    <p>This is the code I wrote to simulate conway's game of life.
-    </p>
-    <pre class="brush: javascript">
-$conway_js
-    </pre>
+    <p>This is the code I wrote to simulate conway's game of life.</p>
   </div>
 </div>
 <div class="span-6 last">

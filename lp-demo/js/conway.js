@@ -1,4 +1,27 @@
 
+var CONWAY = {};
+
+CONWAY.board = {
+    cells: 20,
+    board: new Array(),
+};
+
+CONWAY.init = function() {
+  running = true;
+  canvas = document.getElementById('conway');
+  ctx = canvas.getContext('2d');
+  board = makeBoard();
+  board[3][3] = board[3][5] = 1;
+  board[3][4] = 3;
+  
+  document.onkeypress = keyHandler;
+  canvas.onclick = clickHandler;
+  
+  cellWidth = canvas.width / cells;
+  cellHeight = canvas.height / cells;
+  
+  return setInterval(draw, 100);
+};
 var cells = 20;
 
 var cellWidth;
@@ -47,7 +70,6 @@ function countNeighbors(x, y) {
   return newCount;
 }
 
-var generation = 0;
 function simulate() {
   var newBoard = makeBoard();
   
@@ -70,8 +92,6 @@ function simulate() {
     newBoard[cells][i] = newBoard[-1][i];
   }
 
-  generation += 1;
-  document.getElementById("gen").innerText=generation;
   return newBoard;
 }
 

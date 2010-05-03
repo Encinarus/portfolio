@@ -19,6 +19,49 @@ def mergeParams(default, overrides):
   merged.update(overrides)
   return merged
 
+
+class DefaultDemo:
+  def __init__(self):
+    pass
+
+  def loadTemplate(self):
+    return 'Pick one of the demos above'
+    
+  def name(self):
+    return None
+
+
+class ConwayDemo:
+  def __init__(self):
+    pass
+    
+  def loadSource(self):
+    return "Hello"
+    
+  def loadTemplate(self):
+    return loadTemplate('templates/conways_life.html', {
+        'conway_js': self.loadSource(),
+    })
+    
+  def name(self):
+    return "Conway's Game of Life"
+    
+    
+class DialDemo:
+  def __init__(self):
+    pass
+    
+  def loadSource(self):
+    return "Hello"
+    
+  def loadTemplate(self):
+    return loadTemplate('templates/dial_creator.html', {
+        'dial_js': self.loadSource(),
+    })
+    
+  def name(self):
+    return 'Dial Creator'
+
 class MainHandler(webapp.RequestHandler):
   def get(self):
     path = serverPath('templates/index.html')
@@ -35,28 +78,29 @@ class MainHandler(webapp.RequestHandler):
 
 
 class PortfolioHandler(webapp.RequestHandler):
+  def __init__(self):
+    self.demos = {
+        '/life': ConwayDemo(),
+        '/dial': DialDemo(),
+        '/': DefaultDemo(),
+    }
+
   def getPageName(self):
     uri = self.request.uri
     uri = uri[uri.find('/portfolio'):]
     return uri.replace('/portfolio', '')
 
   def getDemoContent(self, demoName):
-    if demoName == '/' or not len(demoName):
-      return (None, "Hello World")
-    elif demoName == '/dial':
-      return ("Dial Creator", loadTemplate('templates/dial_creator.html'))
-    elif demoName == '/life':
-      conway = loadTemplate('templates/conways_life.html', {
-        'conway_js': 'hello',
-      })
-      return ("Conway's Game of Life", conway)
-    else:
-      return (None, "Whoops, demo %s not found!" % (demoName))
+    if not len(demoName):
+      demoName = '/'
+    if demoName in self.demos:
+      return self.demos[demoName]
+    return None
 
   def get(self):
-    (name, content) = self.getDemoContent(self.getPageName())
+    demo = self.getDemoContent(self.getPageName())
     commonArgs = {
-      'project_name': name,
+      'project_name': demo.name(),
       'page_title': 'Demos @ Light Pegasus',
       'analytics': loadTemplate('templates/analytics.html'),
     }
@@ -68,7 +112,7 @@ class PortfolioHandler(webapp.RequestHandler):
       'site_header': site_header,
       'css_includes': loadTemplate('templates/css_includes.html'),
       'top_nav': loadTemplate('templates/top_nav.html'),
-      'page_content': content,
+      'page_content': demo.loadTemplate(),
       'common_js': loadTemplate('templates/common_javascript.html'),
     })
     tmpl = loadTemplate('templates/portfolio.html', 
