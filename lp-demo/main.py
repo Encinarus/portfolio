@@ -130,7 +130,7 @@ def main():
   application = webapp.WSGIApplication([('/portfolio.*', PortfolioHandler),
                                         ('/', MainHandler),
                                         ('.*', NotFoundHandler)],
-                                       debug=True)
+                                       debug=False)
   util.run_wsgi_app(application)
 
 
