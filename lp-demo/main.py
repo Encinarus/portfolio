@@ -85,20 +85,14 @@ class PortfolioHandler(webapp.RequestHandler):
         '/': DefaultDemo(),
     }
 
-  def getPageName(self):
-    uri = self.request.uri
-    uri = uri[uri.find('/portfolio'):]
-    return uri.replace('/portfolio', '')
-
   def getDemoContent(self, demoName):
-    if not len(demoName):
+    if not len(demoName) or demoName not in self.demos:
       demoName = '/'
-    if demoName in self.demos:
-      return self.demos[demoName]
-    return None
+
+    return self.demos[demoName]
 
   def get(self):
-    demo = self.getDemoContent(self.getPageName())
+    demo = self.getDemoContent(self.request.path)
     commonArgs = {
       'page_title': 'Demos @ Light Pegasus',
       'analytics': loadTemplate('templates/analytics.html'),
@@ -126,10 +120,8 @@ class NotFoundHandler(webapp.RequestHandler):
 
 
 def main():
-  application = webapp.WSGIApplication([('/portfolio.*', PortfolioHandler),
-                                        ('/', MainHandler),
-                                        ('.*', NotFoundHandler)],
-                                       debug=False)
+  application = webapp.WSGIApplication([('.*', PortfolioHandler)],
+                                       debug=True)
   util.run_wsgi_app(application)
 
 
