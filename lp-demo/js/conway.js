@@ -1,5 +1,5 @@
 
-var conway = function() {
+var conway = function(canvasId) {
   var context, running, canvas, board, cellWidth, 
       cellHeight, cellX, cellY, lastUpdate;
   var cells = 25;
@@ -151,7 +151,7 @@ var conway = function() {
   }
     
   lastUpdate = new Date().getTime();
-  canvas = document.getElementById('conway');
+  canvas = document.getElementById(canvasId);
   cellWidth = canvas.width / cells;
   cellHeight = canvas.height / cells;
   ctx = canvas.getContext('2d');

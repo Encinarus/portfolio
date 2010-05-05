@@ -25,7 +25,7 @@ class DefaultDemo:
     pass
 
   def loadTemplate(self):
-    return 'Pick one of the demos above'
+    return loadTemplate('templates/project_list.html')
     
   def name(self):
     return None
@@ -100,7 +100,6 @@ class PortfolioHandler(webapp.RequestHandler):
   def get(self):
     demo = self.getDemoContent(self.getPageName())
     commonArgs = {
-      'project_name': demo.name(),
       'page_title': 'Demos @ Light Pegasus',
       'analytics': loadTemplate('templates/analytics.html'),
     }

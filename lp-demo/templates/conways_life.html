@@ -1,28 +1,20 @@
 <script type="text/javascript" src="/js/conway.js"></script>
 <script type="text/javascript">
   \$("\#conway").ready(function() {
-    conway();
+    conway("conway");
   });
 </script>
 <div class="span-16 colborder prepend-1">
   <div id="demo">
     <h3>Conway's Game of Life - Demo</h3>
-    <p style="margin-left: 10px; margin-bottom: 0px;">Try it out!</p> 
-    <ul style="margin-left: 40px;">
-      <li>Click to fill a cell</li>
-      <li>Pressing <strong>n</strong> simulates one generation</li>
-      <li>Pressing <strong>r</strong> resets the board</li>
-      <li>Pressing <strong>s</strong> starts/stops the simulation
-    </ul>
     <canvas id="conway" width="500" height="500" 
             style="border: 1px solid black;"></canvas>
     <br/>
   </div>
   <div id="code" class="hidden">
     <h3>Conway's Game of Life - Code</h3>
-    <p>This is the code I wrote to simulate conway's game of life. It's my first attempt to do something with Canvas, so fun times for all! If you're interested, check out the code below.</p>
+    <p>This is the code I wrote to simulate conway's game of life. It's my first attempt to do something with Canvas, so fun times for all! I did it mostly as a goof and to get to know how to use Canvas and Javascript. The code may be a bit rough, but for a first shot I don't think it's too bad. :)</p>
     <script src="http://gist.github.com/389243.js"></script>
-    
   </div>
 </div>
 <div class="span-6 last">
@@ -32,4 +24,13 @@
     <li><a href="javascript:void(0)" 
           onclick="\$('\#demo').hide(); \$('\#code').show();">Show Code</a></li>
   </ul>
+  <hr />
+  Instructions:
+  <ul style="margin-left: 40px;">
+    <li>Click to fill a cell</li>
+    <li>Pressing <strong>n</strong> simulates one generation</li>
+    <li>Pressing <strong>r</strong> resets the board</li>
+    <li>Pressing <strong>s</strong> starts/stops the simulation
+  </ul>
+
 </div>

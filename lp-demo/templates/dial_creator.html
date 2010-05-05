@@ -1,8 +1,17 @@
+<script type="text/javascript" src="/js/conway.js"></script>
+<script type="text/javascript">
+  \$("\#conway").ready(function() {
+    conway("conway");
+  });
+</script>
 <div class="span-16 colborder prepend-1">
   <div id="demo">
-    This is dummy text, should be visible
+    <h3>Dial Creator - Demo</h3>
+    <canvas id="conway" width="500" height="500" 
+        style="border: 1px solid black;"></canvas>
   </div>
   <div id="code" class="hidden">
+    <h3>Dial Creator - Code</h3>
   </div>
 </div>
 <div class="span-6 last">
