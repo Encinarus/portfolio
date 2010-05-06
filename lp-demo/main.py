@@ -24,7 +24,7 @@ class PortfolioHandler(webapp.RequestHandler):
   def __init__(self):
     self.demos = {
         '/life': loadTemplate('templates/conways_life.html'),
-        '/dial': loadTemplate('templates/dial_creator.html'),
+        '/dial': loadTemplate('templates/dial_maker.html'),
         '/': loadTemplate('templates/project_list.html'),
     }
 
