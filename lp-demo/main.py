@@ -20,69 +20,12 @@ def mergeParams(default, overrides):
   return merged
 
 
-class DefaultDemo:
-  def __init__(self):
-    pass
-
-  def loadTemplate(self):
-    return loadTemplate('templates/project_list.html')
-    
-  def name(self):
-    return None
-
-
-class ConwayDemo:
-  def __init__(self):
-    pass
-    
-  def loadSource(self):
-    return "Hello"
-    
-  def loadTemplate(self):
-    return loadTemplate('templates/conways_life.html', {
-        'conway_js': self.loadSource(),
-    })
-    
-  def name(self):
-    return "Conway's Game of Life"
-    
-    
-class DialDemo:
-  def __init__(self):
-    pass
-    
-  def loadSource(self):
-    return "Hello"
-    
-  def loadTemplate(self):
-    return loadTemplate('templates/dial_creator.html', {
-        'dial_js': self.loadSource(),
-    })
-    
-  def name(self):
-    return 'Dial Creator'
-
-class MainHandler(webapp.RequestHandler):
-  def get(self):
-    path = serverPath('templates/index.html')
-    
-    site_header = loadTemplate('templates/site_header.html')
-    template_values = { 
-      'page_title': 'Light Pegasus',
-      'site_header': site_header,
-      'css_includes': loadTemplate('templates/css_includes.html'),
-    }
-    tmpl = loadTemplate('templates/index.html', 
-                        searchList = (template_values,))
-    self.response.out.write(tmpl)
-
-
 class PortfolioHandler(webapp.RequestHandler):
   def __init__(self):
     self.demos = {
-        '/life': ConwayDemo(),
-        '/dial': DialDemo(),
-        '/': DefaultDemo(),
+        '/life': loadTemplate('templates/conways_life.html'),
+        '/dial': loadTemplate('templates/dial_creator.html'),
+        '/': loadTemplate('templates/project_list.html'),
     }
 
   def getDemoContent(self, demoName):
@@ -105,18 +48,12 @@ class PortfolioHandler(webapp.RequestHandler):
       'site_header': site_header,
       'css_includes': loadTemplate('templates/css_includes.html'),
       'top_nav': loadTemplate('templates/top_nav.html'),
-      'page_content': demo.loadTemplate(),
+      'page_content': demo,
       'common_js': loadTemplate('templates/common_javascript.html'),
     })
     tmpl = loadTemplate('templates/portfolio.html', 
                         searchList = (template_values,))
     self.response.out.write(tmpl)
-
-
-class NotFoundHandler(webapp.RequestHandler):
-  def get(self):
-    self.response.set_status(404)
-    self.response.out.write("<html><body>Sorry, couldn't find what you were looking for</body></html>")
 
 
 def main():
