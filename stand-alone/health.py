@@ -16,7 +16,7 @@ def parsePage(file):
       "<b>(.*?)</b>" +
       "<br />(.*?)" + 
       "<br />(.*?)<br />" + 
-      ".*?Violation points: <b>.*?([0-9]*)</b>")
+      ".*?Violation points: <b>.*?([0-9]*|Not Available).*?</b>")
   inspectionMatcher = re.compile("Inspection Date: <b> *(.*?)</b>")
   
   restaurantReport = {}  
@@ -52,12 +52,20 @@ def parsePage(file):
 
 
 if __name__ == '__main__':
+  first = True
+  print "["
   for arg in sys.argv[1:]:
     try: 
       report = parsePage(arg)
       if report:
-        print json.dumps(parsePage(arg), sort_keys=True, indent=2), ","
+        print json.dumps(report, sort_keys=True, indent=2)
+
+        if first:
+          first = False
+        else:
+          print ","
       else:
         print >> sys.stderr, "%s came up empty" % arg
     except Exception as e:
       print >> sys.stderr, "%s threw %s" % (arg, e)
+  print "]"
