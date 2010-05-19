@@ -58,14 +58,14 @@ if __name__ == '__main__':
     try: 
       report = parsePage(arg)
       if report:
-        print json.dumps(report, sort_keys=True, indent=2)
-
         if first:
           first = False
         else:
           print ","
+
+        print json.dumps(report, sort_keys=True, indent=2)
       else:
         print >> sys.stderr, "%s came up empty" % arg
     except Exception as e:
       print >> sys.stderr, "%s threw %s" % (arg, e)
-  print "]"
+  print "]" 
