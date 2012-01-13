@@ -1,0 +1,226 @@
+<script type="text/javascript" src="/js/monster.js"></script>
+<script type="text/javascript">
+  var Power = function(name, on_hit, on_miss, effect) {
+    this.name = name;
+    this.on_hit = on_hit;
+    this.on_miss = on_miss;
+    this.effect = effect;	
+  };
+  var monster = {
+  	name: "Goblin",
+  	level: 1,
+  	at_wills: [
+  	  
+  	],
+  	defenses: {
+  	  ac: 16,
+  	  fortitude: 13,
+  	  reflex: 14,
+  	  will: 12
+  	},
+  };
+//  alert(monster.defenses.ac);
+</script>
+<style type="text/css">
+  .monster-header {
+  	background-color: #030;
+  	color: #FFF;
+  }
+  .stat-block {
+  	background-color: #444;
+  	color: #FFF;
+  }
+  .stat-block .attr {
+  	color: #FFF;
+  }
+  .stat-block table {
+  	margin-bottom: .2em;
+  }
+  .monster-name {
+  	font-size: 16;
+  	padding-left: 10px; padding-right: 30px;
+  }
+  .attributes {
+  	margin: 0;
+  }
+  .attributes ul {
+  	margin: 0;
+  }
+  .attributes li.attr {
+  	display: inline; 
+    list-style-type: none;
+    margin-right: 5px;
+  }
+  .powers {
+    border-right: 1px solid black; padding-right: 0px; margin-right: 0px;
+  }
+  .power div {
+    padding-left: .5em
+  }
+  .power-header, .flavor-text, .on-hit, .on-miss, .effect, .attack {
+  }
+  .power-header {
+  	border-bottom: 1px solid black;
+  	color: white;
+  }
+  .daily-power {
+  	background-color: #905000;
+  }
+  .encounter-power {
+  	background-color: #905000;
+  }
+  .recharge-power {
+  	background-color: #905000;
+  }
+  .atwill-power {
+  	background-color: #373;
+  }
+  .power-title {
+  	font-weight: bold;
+  	font-size: 1.2em;
+  }
+  .recharge {
+  	font-weight: normal;
+  }
+  .flavor-text {
+  	font-style: italic;
+  	border-bottom: 1px solid grey;
+  }
+  .on-hit, .on-miss, .effect {
+  	padding-left: 1em;
+  }
+  .attack {
+  	padding-left: .5em
+  }
+  .hp, .hpb {
+  	width: 13px;
+  	height: 13px;
+  	float: left;
+  	clear: ;
+  }
+  .hp {
+  	border: 1px solid black;
+  }
+  .hpb {
+  	border: 1px solid red;
+  }
+  .hpheader {
+  	width: 75px;
+  	float: left;
+  	text-align: right;
+  }
+  .loot {
+  	border-top: 1px solid black;
+  	background-color: #DDD
+  }
+</style>
+<div class="span-17 colborder prepend-1">
+  <div id="demo">
+    <h3>D&D Monster Generator (4e)</h3>
+    <div class="span-17 last" style="border: 1px solid #999">
+      <div class="span-13 first large" style="font-weight: bold">
+        Ogre Pulverizer
+      </div>
+      <div class="span-4 last">
+        Level 8 brute<br/>
+        Large Natural (Humanoid)
+      </div>
+	  <dl class="span-2">
+	  	<dt>AC</dt>
+	  	<dd>19</dd>
+	  	<dt>Fort</dt>
+	  	<dd>21</dd>
+	  	<dt>Relfex</dt>
+	  	<dd>16</dd>
+	  	<dt>Will</dt>
+	  	<dd>16</dd>
+	  </dl>
+    </div>
+    
+    <br/>
+    
+    <div class="span-17 last" style="border: 1px solid #999">
+      <div class="monster-header span-17 last">
+        <div class="monster-name span-10">Sneaky Kobold</div>
+    	<div class="attributes span-6 last">
+          <ul>
+            <li class="attr"><strong>AC:</strong> 15</li>
+            <li class="attr"><strong>F:</strong> 13</li>
+            <li class="attr"><strong>R:</strong> 13</li>
+            <li class="attr"><strong>W:</strong> 13</li>
+            <li class="attr"><strong>HP:</strong> 24</li>
+          </ul>
+        </div>
+        <div class="stat-block span-17 last">
+          <table style="padding-left: 10px;">
+            <tr>
+              <td class="attr"><strong>Speed:</strong> 6</td>
+              <td class="attr"><strong>Initative:</strong> +3</td>
+              <td class="attr"><strong>Perception:</strong> +2</td>
+              <td class="attr"><strong>Stealth:</strong> +6</td>
+            </tr>
+            <tr>
+              <td class="attr"><strong>Str:</strong> 12 (+1)</td>
+              <td class="attr"><strong>Dex:</strong> 14 (+2)</td>
+              <td class="attr"><strong>Wis:</strong> 12 (+1)</td>
+              <td class="attr"><strong>Con:</strong> 12 (+1)</td>
+              <td class="attr"><strong>Int:</strong> 12 (+1)</td>
+              <td class="attr"><strong>Cha:</strong> 12 (+1)</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="span-11 powers" style="border-right: 1px solid black; padding-right: 6px; margin-right: 3px;">
+        <div class="span-11 append-bottom power">
+          <div class="power-header encounter-power span-11">
+            <span class="power-title">Stabby Dagger</span><br/> At-will
+          </div>
+          <div class="attack span-11">
+            <strong>Melee 1</strong> +6 vs AC
+          </div>
+          <div class="on-hit span-11">
+            <strong>Hit:</strong> 1d8 + 4 damage.
+          </div>
+        </div>
+        <div class="span-11 append-bottom power">
+          <div class="power-header atwill-power span-11">
+            <span class="power-title">Shifty</span><br/> At-will
+          </div>
+          <div class="effect span-11">
+            <strong>Effect:</strong> The kobold shifts one square.
+          </div>
+        </div>
+      </div>
+      <div class="health span-6 last">
+        <span class="hpheader">25</span>
+        <span class="hpheader">50</span>
+        <span class="hpheader">75</span>
+        <br/>
+        <div class="span-6" style="padding-bottom: 3px;">
+          <span class="hp"></span>
+          <span class="hp"></span>
+          <span class="hp"></span>
+          <span class="hpb"></span>
+          <span class="hpb"></span>
+        </div>
+        <div class="span-6" style="padding-bottom: 3px;">
+          <span class="hp"></span>
+          <span class="hp"></span>
+          <span class="hp"></span>
+          <span class="hpb"></span>
+          <span class="hpb"></span>
+        </div>
+        <div class="span-6" style="padding-bottom: 3px;">
+          <span class="hp"></span>
+          <span class="hp"></span>
+          <span class="hp"></span>
+          <span class="hpb"></span>
+          <span class="hpb"></span>
+        </div>
+      </div>
+      <div class="loot span-17 last">
+        <span style="padding-left: 5px"><strong>Equipment:</strong> Dagger, Leather Armor</span>
+      </div>
+    </div>
+  </div>
+</div>

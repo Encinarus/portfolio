@@ -22,11 +22,15 @@ def mergeParams(default, overrides):
 
 class PortfolioHandler(webapp.RequestHandler):
   def __init__(self):
-    self.demos = {
-        '/life': loadTemplate('templates/conways_life.html'),
-        '/dial': loadTemplate('templates/dial_maker.html'),
-        '/': loadTemplate('templates/project_list.html'),
+    demos = {
+      '/life': 'conways_life.html',
+      '/dial': 'dial_maker.html',
+      '/minis': 'minis.html',
+      '/': 'project_list.html',
     }
+    self.demos = {}
+    for key, value in demos.items():
+      self.demos[key] = loadTemplate('templates/%s' % value)
 
   def getDemoContent(self, demoName):
     if not len(demoName) or demoName not in self.demos:
